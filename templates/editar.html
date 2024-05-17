@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Edição de Produto{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center">Edição de Produto</h1>
+    <form method="POST" class="container-md">
+        <div class="mb-3">
+            <label for="nome" class="form-label">Nome do Produto:</label>
+            <input type="text" id="nome" name="nome" value="{{ produto.Nome }}" required class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="descricao" class="form-label">Descrição do Produto:</label>
+            <textarea id="descricao" name="descricao" required class="form-control">{{ produto.Descricao }}</textarea>
+        </div>
+        <div class="mb-3">
+            <label for="cor" class="form-label">Cor do Produto:</label>
+            <input type="text" id="cor" name="cor" value="{{ produto.Cor }}" required class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="preco" class="form-label">Preço:</label>
+            <input type="number" id="preco" name="preco" step="0.01" value="{{ produto.Preco }}" required class="form-control">
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary" onclick="ExibirMensagem()">Salvar</button>
+            <a href="{{ url_for('produtos') }}" class="btn btn-danger">Voltar</a>
+        </div>
+    </form>
+</div>
+<script>
+    function ExibirMensagem()
+    {alert("Produto Alterado com Sucesso!");}
+    </script>
+{% endblock %}

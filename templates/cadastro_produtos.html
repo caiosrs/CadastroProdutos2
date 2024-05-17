@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Cadastro de Produtos{% endblock %}
+
+{% block content %}
+
+<h1 class="text-center">Cadastro de Produtos</h1>
+<form action="/cadastrar_produto" method="post" class="container-md" id="formAdicionarProduto">
+  <label for="nome"class="form-label">Nome do Produto:</label>
+  <input type="text" id="nome" name="nome" required class="form-control">
+  <label for="descricao"class="form-label">Descrição do Produto:</label>
+  <textarea type="text" id="descricao" name="descricao" required class="form-control"></textarea>
+  <label for="cor"class="form-label">Cor do Produto:</label>
+  <input type="text" id="cor" name="cor" required class="form-control">
+  <label for="preco"class="form-label" type="text">Preço:</label>
+  <input type="number" id="preco" name="preco" step="0.01" required class="form-control">
+  <br/>
+  <button type="submit" class="btn btn-primary" onclick="ExibirMensagem()">Adicionar Produto</button>
+  
+  <button id="btnVisualizarProdutos" class="btn btn-secondary">Produtos Cadastrados</button>
+  
+</form>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+<script>
+var btnVisualizarProdutos = document.getElementById('btnVisualizarProdutos');
+
+btnVisualizarProdutos.addEventListener('click', function() {
+    window.location.href = '/produtos';
+});
+</script>
+
+<script>
+function ExibirMensagem()
+{alert("Produto Adicionado com Sucesso!");}
+</script>
+
+{% endblock %}

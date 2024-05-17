@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Produtos{% endblock %}
+{% block content %}
+<h1 class="text-center">Produtos Disponíveis</h1>
+<br/>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nome:</th>
+            <th>Descrição:</th>
+            <th>Cor:</th>
+            <th>Preço:</th>
+            <th>Ações:</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for produto in produtos %}
+        <tr>
+            <td>{{ produto.Nome }}</td>
+            <td>{{ produto.Descricao }}</td>
+            <td>{{ produto.Cor }}</td>
+            <td>R$ {{ produto.Preco }}</td>
+            <td>
+                <form action="/excluir_produto/{{ produto.ID }}" method="POST" onsubmit="return confirmarExclusao('{{ produto.Nome }}')">
+                    <button type="submit" class="btn btn-danger">Excluir</button>
+                </form>
+            </td>
+            <td>
+                <a href="/editar/{{ produto.ID }}" class="btn btn-primary">Editar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<form action="/cadastro_produtos">
+    <div class="text-center">
+        <br/>
+        <button type="submit" class="btn btn-secondary">Voltar para a página inicial</button>
+    </div>
+</form>
+<script>
+    function confirmarExclusao(nomeProduto) {
+        return confirm("Tem certeza que deseja excluir o produto: '" + nomeProduto + "'?");
+    }
+</script>
+{% endblock %}
